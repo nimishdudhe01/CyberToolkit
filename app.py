@@ -30,7 +30,7 @@ def ciphers(type, string):
 def encodings_usage():
 	return "/encodings/{type}/{string-to-encode}, 00 -> binary, 01 -> bash64, That's all for now, More to be added later."
 
-@app.get("/encoding/{type}/{string}")
+@app.get("/encodings/{type}/{string}")
 def encodings(type, string):
 	if (type == '00'):
 		return CTEncoding.tobinary(string)

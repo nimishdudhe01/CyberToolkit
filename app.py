@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-import CTCiphers # CTEncoding CTShells
+import CTCiphers as ciph # CTEncoding CTShells
 import uvicorn
 
 app = FastAPI()
@@ -17,13 +17,13 @@ def ciphers_usage():
 	return "/ciphers/{type}/{string-to-encrypt}, 00 -> Caesar, 01 -> Atbash, 02 -> Rail Fence, 03 -> Rot13, 04 -> Columnar Transposition"
 
 @app.get("/ciphers/{type}/{string}")
-def ciphers_00(type, string):
+def ciphers(type, string):
 #	return f"{type}:{string}"
 	if (type == '00'):
-		all_shifted_ciphers = CTCiphers.caesar_cipher(string)
+		all_shifted_ciphers = ciph.caesar_cipher(string)
 		return all_shifted_ciphers
 	if (type == '01'):
-		return "AtBash Logic Here"
+		return ciph.atbash_cipher(string)
 
 if __name__ == '__main__':
 	uvicorn.run("app:app", reload=True)

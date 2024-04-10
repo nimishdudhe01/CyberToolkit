@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 import CTCiphers as ciph # CTEncoding CTShells
+import CTEncoding
 import uvicorn
 
 app = FastAPI()
@@ -24,6 +25,17 @@ def ciphers(type, string):
 		return all_shifted_ciphers
 	if (type == '01'):
 		return ciph.atbash_cipher(string)
+
+@app.get("/encodings")
+def encodings_usage():
+	return "/encodings/{type}/{string-to-encode}, 00 -> binary, 01 -> bash64, That's all for now, More to be added later."
+
+@app.get("/encoding/{type}/{string}")
+def encodings(type, string):
+	if (type == '00'):
+		return CTEncoding.tobinary(string)
+	elif (type == '01'):
+		return 'Base64 Logic Here'
 
 if __name__ == '__main__':
 	uvicorn.run("app:app", reload=True)

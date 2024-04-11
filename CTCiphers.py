@@ -1,6 +1,18 @@
 alph = 'abcdefghijklmnopqrstuvwxyz'
 cap_alph = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
+html_content ="""
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>{title}</title>
+	</head>
+	<body>
+		{body}
+	</body>
+	</html>
+"""
+
 def caesar_cipher(string):
 	all_shifts = []
 	for shift in range(1, 27):
@@ -15,11 +27,12 @@ def caesar_cipher(string):
 			else:
 				encrypted_string += char
 		all_shifts.append(encrypted_string)
-
-	shifts = ''
+	title = 'Caesar Cipher'
+	body = ''
 	for shift,cipher in enumerate(all_shifts, start=1):
-		shifts += f"Shift {shift}: {cipher} $ "
-	return shifts
+		body += f"Shift {shift}: {cipher} <br>"
+	
+	return html_content.format(title=title, body=body)
 
 def atbash_cipher(string):
 	encrypted_string = ''

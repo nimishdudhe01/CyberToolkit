@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 import CTCiphers as ciph # CTEncoding CTShells
-import CTEncoding
+import CTEncoding as enc
+import CTLookup as look
 import uvicorn
+from starlette.responses import HTMLResponse
 
 app = FastAPI()
 
@@ -11,7 +13,7 @@ def greet_hackers():
 
 @app.get("/usage")
 def usage():
-	return "/ciphers, /revshell, /encodings , More to be added. Open to Suggestions!"
+	return "/ciphers, /lookup, /revshell, /encodings , More to be added. Open to Suggestions!"
 
 @app.get("/ciphers")
 def ciphers_usage():
@@ -21,10 +23,21 @@ def ciphers_usage():
 def ciphers(type, string):
 #	return f"{type}:{string}"
 	if (type == '00'):
-		all_shifted_ciphers = ciph.caesar_cipher(string)
-		return all_shifted_ciphers
+		return HTMLResponse(content=ciph.caesar_cipher(string), status_code=200)
 	if (type == '01'):
 		return ciph.atbash_cipher(string)
+
+@app.get("/lookup")
+def lookup():
+	return "endpoint -> /lookup/{hash}Here you can do hash lookup for the most common 100k Passwords, the available hash types are md4, md5, smd160, sha1, sha256, sha512."
+
+@app.get("/lookup/{hash}")
+def hash_lookup(hash):
+	result = look.reverse_lookup(hash)
+	if result:
+		return result
+	else:
+		return {"error": "String not found for the given hash value."}
 
 @app.get("/encodings")
 def encodings_usage():
@@ -33,7 +46,7 @@ def encodings_usage():
 @app.get("/encodings/{type}/{string}")
 def encodings(type, string):
 	if (type == '00'):
-		return CTEncoding.tobinary(string)
+		return enc.tobinary(string)
 	elif (type == '01'):
 		return 'Base64 Logic Here'
 

@@ -26,7 +26,7 @@ To run this application, make sure you have Docker installed on your system. The
 
 3. Build the Docker image:
    ```bash
-   docker build -t fastapi-crypto-toolbox .repo_name
+   docker build -t fastapi-crypto-toolbox .
    ```
 
 4. Run the Docker container:

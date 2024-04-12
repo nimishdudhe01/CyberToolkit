@@ -16,17 +16,17 @@ To run this application, make sure you have Docker installed on your system. The
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your_username/repo_name.git
+   git clone https://github.com/nimishdudhe01/CyberToolkit/
    ```
 
 2. Navigate to the repository directory:
    ```bash
-   cd repo_name
+   cd CyberToolkit
    ```
 
 3. Build the Docker image:
    ```bash
-   docker build -t fastapi-crypto-toolbox .
+   docker build -t fastapi-crypto-toolbox .repo_name
    ```
 
 4. Run the Docker container:

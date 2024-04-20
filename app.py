@@ -48,7 +48,7 @@ def encodings(type, string):
 	if (type == '00'):
 		return enc.tobinary(string)
 	elif (type == '01'):
-		return 'Base64 Logic Here'
+		return enc.tobase64(string)
 
 if __name__ == '__main__':
 	uvicorn.run("app:app", reload=True)
